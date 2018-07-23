@@ -20,8 +20,10 @@ FROM openjdk:8-jre
 
 # Install dependencies
 RUN set -ex; \
+  cp /etc/apt/sources.list /etc/apt/sources.list.bak; \
+  sed -i "s/deb.debian.org\|security.debian.org/mirrors.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list; \
   apt-get update; \
-  apt-get -y install libsnappy1v5; \
+  apt-get -y install libsnappy1v5 vim; \
   rm -rf /var/lib/apt/lists/*
 
 # Grab gosu for easy step-down from root
