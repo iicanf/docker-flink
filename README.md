@@ -1,42 +1,16 @@
 docker-flink
 ============
 
-Docker packaging for Apache Flink
+fork from [docker-flink](https://github.com/docker-flink/docker-flink) ,and i will keep all the feature, and now i focus on this variant [scala_2.11-debian](https://github.com/iicanf/docker-flink/tree/master/1.5/scala_2.11-debian) 
 
-Use `add-version.sh` to rebuild the Dockerfiles and all variants for a
-particular Flink release release. Before running this, you must first delete
-the existing release directory.
+make changes:
 
-    usage: ./add-version.sh -r flink-release -f flink-version
+* add vim to debian
+* change the apt source form `ded.debian.org` to `mirrors.tuna.tsinghua.edu.cn`
 
-Example
--------
+roadmap 
 
-    $ rm -r 1.2
-    $ ./add-version.sh -r 1.2 -f 1.2.1
-
-
-Stackbrew Manifest
-------------------
-
-`generate-stackbrew-library.sh` is used to generate the library file required for official Docker
-Hub images.
-
-When this repo is updated, the output of this script should be used to replaced the contents of
-`library/flink` in the Docker [official-images](https://github.com/docker-library/official-images)
-repo via a PR.
-
-Note: running this script requires the `bashbrew` binary and a compatible version of Bash. The
-Docker image `plucas/docker-flink-build` contains these dependencies and can be used to run this
-script.
-
-Example:
-
-    docker run --rm \
-        --volume /path/to/docker-flink:/build \
-        plucas/docker-flink-build \
-        /build/generate-stackbrew-library.sh \
-    > /path/to/official-images/library/flink
+* react the [docker-entrypoint.sh](https://github.com/iicanf/docker-flink/blob/master/1.5/scala_2.11-debian/docker-entrypoint.sh) for [zookeeper HA](https://github.com/31z4/zookeeper-docker) 
 
 
 License
